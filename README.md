@@ -6,12 +6,12 @@
 
 ## Install Portainer
 
-Portainer is a webui on top of docker, making most of the commands available via a graphical user interface. 
-It is available as a docker container making it a nice first example of running a service as container.
+Portainer is a web ui on top of docker, making most of the commands available via a graphical user interface. 
+It is available as a docker container, making it a nice first example of running a service as container.
 
 1. Go to Docker Hub (https://hub.docker.com/), search for Portainer and go to the top result (with most pulls
    and stars)
-1. Follow the 'Deploy Portainer' link and install portainer according the instructions under 'Quick start'
+1. Follow the 'Deploy Portainer' link and install portainer according the instructions under 'Quick start'.
   
    Try to explain for yourself the options passed to the 'docker run' command.
   
@@ -19,13 +19,13 @@ It is available as a docker container making it a nice first example of running 
    docker deamon unless this is explicitly granted. This is done by mounting a socket from the host to the
    container as if it is a normal file.
 
-1. Go to the portainer web interface (http://<your_ip>:9000), come up with a new password and chose to manage
+1. Go to the portainer web interface (http://<your_ip>:9000), come up with a new password and choose to manage
    the Local Docker Enviroment
   
 1. Take your time to look around. You should see that at least one container is running (portainer itself) and
    can inspect its properties
   
-1. Remove the container via the web ui. This is equivalent to 'docker rm -f <container>'.
+1. Remove the container via the web ui. This is equivalent to command 'docker rm -f <name of container, or container id>'.
 
 1. Start a new container (arrow up in the terminal to select the previous command line).
    Log in again and notice that it rememberd the password. How is this possible?
