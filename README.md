@@ -27,10 +27,10 @@ It is available as a docker container making it a nice first example of running 
   
 1. Remove the container via the web ui. This is equivalent to 'docker rm -f <container>'.
 
-1. Start a new container using the command line from 2. Log in again and notice that it rememberd the password.
-   How is this possible?
+1. Start a new container (arrow up in the terminal to select the previous command line).
+   Log in again and notice that it rememberd the password. How is this possible?
 
-Bonus:
+### Bonus:
 
 1. Remove the container again. This time also remove the mounted volume on the host with
 
@@ -108,6 +108,61 @@ the steps to see where you are.
 1. Simulate some development effort by changing the greeting format in ```app/service.conf```
    to something unique and rebuild and run again. You should now be greeted with your own
    unique message!
+
+### Bonus
+
+1. Replace the **CMD** by an **ENTRYPOINT**. This allows arguments to be passed to our service
+   (but it doesn't allow easy access to the shell in the container anymore)
    
-   
+1. Expose port 8000 to make it visible for tools that that port is used, allowing auto-binding for
+   example.
+
 ## Registries and tags
+
+There is a docker registry installed on the local network of the VM's: ```cursusregistry:5000```
+ 
+1. Tag your greeting image with ```cursusregistry:5000/<your-name>/greeting```. List your local
+   images with:
+
+    ```docker images```
+
+   You should see that the image ```greeting``` and ```cursusregistry:5000/<your-name>/greeting```
+   point to the same image ID
+   
+   Notice that because you didn't explicitly tag it with a version it was tagged with ```latest```
+   
+1. Push the image to the cursusregistry
+
+   The registry doesn't have a user interface, but you should be able to list the tags on your image
+   with the following command:
+
+   ```curl -X GET http://cursusregistry:5000/v2/<your-name>/greeting/tags/list```
+
+   This should print something like:
+   ```{"name":"<your-name>/greeting","tags":["latest"]}```   
+
+1. Now tag your image again, but this time with the version tag ```1.0```
+   (i.e. ```cursusregistry:5000/<your-name>/greeting:1.0```), and push that to the registry too.
+   
+   Inspect the registry again if you like
+    
+1. Pull the image by one of its new tags and run it::
+
+   ```docker pull cursusregistry:5000/<your-name>/greeting```
+   ```docker run --rm -p8000:8000 cursusregistry:5000/<your-name>/greeting```
+   
+   You should see that it pulls the image from the repository before starting it
+   
+   Note: docker run would also pull the image, but only if it doesn't find the tag locally.
+   Therefore we pull first.
+
+### Bonus
+
+1. Stop the image and this time run the image from your neighbour
+
+1. Change the greeting format and build the image again like we did in the previous assignment
+   Give it the tag ```cursusregistry:5000/<your-name>/greeting:1.1``` and push it
+   
+   You now have a 1.0, 1.1 and latest in the repository, but to which image is latest pointing?
+   
+1. Fix this and *pull* and *run* the image by its ```latest``` tag
