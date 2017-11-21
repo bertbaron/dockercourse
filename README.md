@@ -1,10 +1,10 @@
 # dockercourse
 
-## Inspect the filesystem and interactive shell
+## 1 - Docker run and docker exec
 
 
 
-## Install Portainer
+## 2 - Install Portainer
 
 Portainer is a web ui on top of docker, making most of the commands available via a graphical user interface. 
 It is available as a docker container, making it a nice first example of running a service as container.
@@ -45,7 +45,7 @@ It is available as a docker container, making it a nice first example of running
    
    
    
-## Create your own image
+## 3 - Create your own image
 
 The task is to create an image for a simple python web service.
 
@@ -117,7 +117,7 @@ the steps to see where you are.
 1. Expose port 8000 to make it visible for tools that that port is used, allowing auto-binding for
    example.
 
-## Registries and tags
+## 4 - Registries and tags
 
 There is a docker registry installed on the local network of the VM's: ```cursusregistry:5000```
  
