@@ -2,6 +2,11 @@
 
 ## 1 - Docker run and docker exec
 
+References:
+
+* https://docs.docker.com/engine/reference/commandline/cli/
+* http://tldp.org/LDP/abs/html/basic.html
+
 Every linux distribution contains the file ```/etc/issue``` with a message or system identification
 (see https://linux.die.net/man/5/issue)
 
@@ -25,6 +30,10 @@ In this assignment we will print the content of this file in different ways.
 
 
 ## 2 - Install Portainer
+
+References:
+
+* https://docs.docker.com/engine/reference/commandline/cli/
 
 Portainer is a web ui on top of docker, making most of the commands available via a graphical user interface. 
 It is available as a docker container, making it a nice first example of running a service as container.
@@ -66,6 +75,11 @@ It is available as a docker container, making it a nice first example of running
    
    
 ## 3 - Create your own image
+
+References:
+
+* https://docs.docker.com/engine/reference/commandline/cli/
+* https://docs.docker.com/engine/reference/builder/
 
 The task is to create an image for a simple python web service.
 
@@ -135,10 +149,22 @@ the steps to see where you are.
    
 1. Expose port 8000 to make it visible for tools that that port is used, allowing auto-binding for
    example.
+   
+1. Are the commands in a sensible order? Think about what will most likely change during development and what not and
+   re-arange your dockerfile if you think it improves.
+   
+   Test by making minor changes and rebuilding the app (do this at least twice for the same Dockerfile). How fast does
+   docker rebuild the image?
 
 ## 4 - Registries and tags
 
-There is a docker registry installed on the local network of the VM's: ```cursusregistry:5000```
+References:
+
+* https://docs.docker.com/engine/reference/commandline/cli/
+* https://docs.docker.com/registry/#requirements
+* https://docs.docker.com/engine/reference/commandline/tag/#tag-an-image-referenced-by-name
+
+There is already a docker registry installed on the local network of the VM's: ```cursusregistry:5000```
  
 1. Tag your greeting image with ```cursusregistry:5000/<your-name>/greeting```. List your local
    images with:
