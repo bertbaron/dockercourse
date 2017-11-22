@@ -4,6 +4,7 @@
 
 
 
+
 ## 2 - Install Portainer
 
 Portainer is a web ui on top of docker, making most of the commands available via a graphical user interface. 
@@ -62,13 +63,12 @@ the steps to see where you are.
    nano Dockerfile
    ```
 
-1. We base the image on the popular lightweight Alpine image. Look it up on Docker Hub and
-   see the example under 'Usage'. In this step you should:
+1. We base the image on the popular lightweight Alpine image. In this step you should:
    
-   * Add the **FROM** instruction
+   * Add the **FROM** instruction for the alpine base image. Look it up on Docker Hub and
+     see the example under 'Usage'.
    * Add the app folder to the image using **ADD**
-   * Set the entry point to ```python service.py``` using **CMD**
-     (We will change it to Entrypoint later)
+   * Add a **CMD** instruction to start ```python service.py``` by default
 
    At this stage you should get an error like:
    
@@ -77,7 +77,7 @@ the steps to see where you are.
 1. Our app needs Python to be installed. 
 
    * Use ```apk``` to install the package ```python```
-   (see the Alpine documentation on Docker hub for an example)
+   (see the Alpine documentation on Docker hub under Usage for an example)
    
    At this stage you should get an error like:
 
@@ -166,3 +166,8 @@ There is a docker registry installed on the local network of the VM's: ```cursus
    You now have a 1.0, 1.1 and latest in the repository, but to which image is latest pointing?
    
 1. Fix this and *pull* and *run* the image by its ```latest``` tag
+
+
+## 5 - Docker compose
+
+1. Make a docker-compose file to run te service from the previous assignment
