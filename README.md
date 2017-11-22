@@ -2,7 +2,26 @@
 
 ## 1 - Docker run and docker exec
 
+Every linux distribution contains the file ```/etc/issue``` with a message or system identification
+(see https://linux.die.net/man/5/issue)
 
+The command ```cat``` prints the contents of a file
+
+In this assignment we will print the content of this file in different ways.
+
+1. Use ```docker run``` to directly run ```cat /etc/issue``` of the ```nginx``` image (```-ti``` should not be needed)
+1. Use ```docker run``` to start an interactive shell (```/bin/bash```) and print the content of ```/etc/issue``` from there
+1. Start an ```nginx``` container in the background (using ```-d```). Use ```docker ps``` to identify its name and then
+   use ```docker exec``` to directly execute ```cat /etc/issue``` (```-ti``` should not be needed)
+1. While the container is still running, use ```docker exec``` to start an interactive shell print the content of
+   ```/etc/issue``` from that shell
+1. stop and remove the container with ```docker rm```
+
+### Bonus:
+
+1. Use ```docker run``` to run the command ```ps -ef``` of the ```nginx``` image.
+1. Now start an ```nginx``` container in the background again and this time run the ```ps -ef``` command with
+   ```docker exec```. Can you explain the difference?
 
 
 ## 2 - Install Portainer
