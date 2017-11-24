@@ -6,6 +6,7 @@ References:
 
 * https://docs.docker.com/engine/reference/commandline/cli/
 * http://tldp.org/LDP/abs/html/basic.html
+* https://dockercheatsheet.painlessdocker.com/
 
 Every linux distribution contains the file ```/etc/issue``` with a message or system identification
 (see https://linux.die.net/man/5/issue)
