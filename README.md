@@ -195,6 +195,7 @@ There is already a docker registry installed on the local network of the VM's: `
 1. Pull the image by one of its new tags and run it::
 
    ```docker pull cursusregistry:5000/<your-name>/greeting```
+   
    ```docker run --rm -p8000:8000 cursusregistry:5000/<your-name>/greeting```
    
    You should see that it pulls the image from the repository before starting it
