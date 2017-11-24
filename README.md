@@ -24,8 +24,8 @@ In this assignment we will print the content of this file in different ways.
 
 ### Bonus:
 
-1. Use ```docker run``` to run the command ```ps -ef``` of the ```nginx``` image.
-1. Now start an ```nginx``` container in the background again and this time run the ```ps -ef``` command with
+1. Use ```docker run``` to run the command ```ps -ef``` of the ```httpd``` image.
+1. Now start an ```httpd``` container in the background again and this time run the ```ps -ef``` command with
    ```docker exec```. Can you explain the difference?
 
 
