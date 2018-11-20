@@ -218,3 +218,6 @@ There is already a docker registry installed on the local network of the VM's: `
 ## 5 - Docker compose
 
 1. Make a docker-compose file to run te service from the previous assignment
+
+
+## 6 - Docker swarm
