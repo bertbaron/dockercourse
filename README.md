@@ -1,161 +1,157 @@
-# dockercourse
+# Opgaven basiscursus docker
 
-## 1 - Docker run and docker exec
+## 1 - ```docker run``` en ```docker exec```
 
-References:
+Referenties:
 
 * https://docs.docker.com/engine/reference/commandline/cli/
 * http://tldp.org/LDP/abs/html/basic.html
 * https://dockercheatsheet.painlessdocker.com/
 
-Every linux distribution contains the file ```/etc/issue``` with a message or system identification
-(see https://linux.die.net/man/5/issue)
+Elke linux distributie bevat het bestand ```/etc/issue``` met een melding of systeem identificatie
+(zie https://linux.die.net/man/5/issue)
 
-The command ```cat``` prints the contents of a file
+Het commando ```cat``` print de inhoud van een (text)bestand
 
-In this assignment we will print the content of this file in different ways.
+In deze opgave zullen we de inhoud van ```/etc/issue``` van een container op verschillende manieren op het scherm printen.
 
-1. Use ```docker run``` to directly run ```cat /etc/issue``` of the ```nginx``` image (```-ti``` should not be needed)
-1. Use ```docker run``` to start an interactive shell (```/bin/bash```) and print the content of ```/etc/issue``` from there
-1. Start an ```nginx``` container in the background (using ```-d```). Use ```docker ps``` to identify its name and then
-   use ```docker exec``` to directly execute ```cat /etc/issue``` (```-ti``` should not be needed)
-1. While the container is still running, use ```docker exec``` to start an interactive shell print the content of
-   ```/etc/issue``` from that shell
-1. stop and remove the container with ```docker rm```
+1. Gebruik ```docker run``` om direct ```cat /etc/issue``` van de ```nginx``` image te printen
+1. Gebruik ```docker run``` om een interactive shell te starten (```/bin/bash```) en print de inhoud van ```/etc/issue``` van daaruit
+1. Start een ```nginx``` container in de achtergrond (met ```-d```). Gebruik ```docker ps``` om de naam te identificeren en dan
+   ```docker exec``` om direct ```cat /etc/issue``` uit te voeren
+1. Terwijl de container nog steeds draait, gebruik ```docker exec``` om een interactieve shell te starten en print de inhoud van
+   ```/etc/issue``` van daaruit
+1. Bij welke van de bovenstaande manieren zijn de vlaggen ```-ti``` nodig?
+1. stop and verwijder eventuele achtergelaten containers (```docker rm```)
 
 ### Bonus:
 
-1. Use ```docker run``` to run the command ```ps -ef``` of the ```httpd``` image.
-1. Now start an ```httpd``` container in the background again and this time run the ```ps -ef``` command with
-   ```docker exec```. Can you explain the difference?
+1. Gebruik ```docker run``` om de proceslijst van de ```httpd:2.4.34``` image te printen (```ps -ef```)
+1. Start nu een container op basis van ```httpd:2.4.34``` in de achtergrond en voer ```ps -ef``` uit via ```docker exec```.
+   Kun je het verschil verklaren?
 
+## 2 - Installeer Portainer
 
-## 2 - Install Portainer
-
-References:
+Referenties:
 
 * https://docs.docker.com/engine/reference/commandline/cli/
 
-Portainer is a web ui on top of docker, making most of the commands available via a graphical user interface. 
-It is available as a docker container, making it a nice first example of running a service as container.
+Portainer is een web interface boven op docker, waarmee de meeste docker commando's via een grafische user interface
+beschikbaar wordt gemaakt. Portainer is zelf ook als docker container te draaien en dus een mooi eerste voorbeeld voor
+het draaien van een service in een container.
 
-1. Go to Docker Hub (https://hub.docker.com/), search for Portainer and go to the top result (with most pulls
-   and stars)
-1. Follow the 'Deploy Portainer' link and install portainer according the instructions under 'Quick start'.
+1. Ga naar Docker Hub (https://hub.docker.com/), zoek op Portainer en ga naar het top resultaat (met de meeste pulls
+   en stars)
+1. Volg de **Deploy Portainer** link en installeer portainer volgens de instructies onder **Quick start**.
   
-   Try to explain for yourself the options passed to the 'docker run' command.
+   Probeer de opties die aan ```docker run``` worden meegegeven te verklaren
   
-   Note that because portainer runs as a docker container it obviously doesn't have permission to access the
-   docker deamon unless this is explicitly granted. This is done by mounting a socket from the host to the
-   container as if it is a normal file.
+   Merk op dat portainer, omdat deze in een container draait, uiteraard geen toegang heeft tot de docker deamon op de host
+   tenzij die toegang expliciet wordt gegeven. Dat gebeurt door het mounten van een socket op de host zoals ook een
+   gewoon bestand of directory kan worden gemount.
 
-1. Go to the portainer web interface (http://<your_ip>:9000), come up with a new password and choose to manage
-   the Local Docker Enviroment
+1. Ga naar de portainer webinterface (http://localhost:9000), bedenk een wachtwoord en kies om de 'Local Docker Environment'
+   te beheren.
   
-1. Take your time to look around. You should see that at least one container is running (portainer itself) and
-   can inspect its properties
+1. Neem de tijd om even rond te kijken. Je zou in elk geval moeten zien dat er tenminste een container draait
+   (portainer zelf) en je kunt daar de eigenschappen van inspecteren.
   
-1. Remove the container via the web ui. This is equivalent to command 'docker rm -f <name of container, or container id>'.
+1. Verwijder de container via the web ui. Dit is equivalent aan het commando ```docker rm -f <name of container, or container id>```.
 
-1. Start a new container (arrow up in the terminal to select the previous command line).
-   Log in again and notice that it rememberd the password. How is this possible?
+1. Start een nieuwe container (pijltje omhooog in de terminal om laatste commando te selecteren). Log opnieuw in en merk
+   op dat het wachtwoord is onthouden. Hoe kan dat?
 
 ### Bonus:
 
-1. Remove the container again. This time also remove the mounted volume on the host with
+1. Verwijder de container maar verwijder dit keer ook het volume.
 
-   ```bash
-   sudo rm -rf /opt/portainer/
-   ```
-   
-   Be careful with this command, don't type it wrong or we have to create a new VM for you!
-   
-1. Start a new container again and go to http://<your_ip>:9000. Now it should prompt you for a new password
+1. Start een nieuwe container en open opnieuw de webinterface. Nu zal er opnieuw een wachtwoord worden gevraagd
    again
    
-   
-   
-## 3 - Create your own image
+### Bonus 2:
 
-References:
+1. Maak een directory 'portainerdata' en start portainer deze keer met de directory gemount
+
+1. Controleer of het wachtwoord tussen verschillende containers wordt bewaard.
+
+1. Onderzoek de directory op de host. Wie is de eigenaar van de bestanden?
+
+   
+## 3 - Maak je eigen image
+
+Referenties:
 
 * https://docs.docker.com/engine/reference/commandline/cli/
 * https://docs.docker.com/engine/reference/builder/
 
-The task is to create an image for a simple python web service.
+Het doel is om een image te maken met een eenvoudige python web service.
 
-Tip: you can build the image and run it if the build is successful with a single command:
+Tip: je kunt met 1 commando de image bouwen en runnen wanneer het bouwen slaagt:
 ```bash
 docker build -t greeting . && docker run --rm -p8000:8000 greeting
 ```
 
-Use the arrow up to recall the command from history. You can do this at any time between
-the steps to see where you are.
+Je kunt dit tussen elk van de volgende stappen uitvoeren om te zien hoe je ervoor staat.
   
-1. cd into the greeting directory and create a Dockerfile there with the command
-   ```bash
-   nano Dockerfile
-   ```
+1. open de ```greeting``` directory in je home en maak daar het bestand ```Dockerfile```
 
-1. We base the image on the popular lightweight Alpine image. In this step you should:
+1. We baseren ons image op het populaire lichtgewicht Alpine image. In deze stap moet je:
    
-   * Add the **FROM** instruction for the alpine base image. Look it up on Docker Hub and
-     see the example under 'Usage'.
-   * Add the app folder to the image using **ADD**
-   * Add a **CMD** instruction to start ```python service.py``` by default
+   * De **FROM** instructie voor het alpine base image toevoegen. Je kunt dit vinden op Docker Hub onder 'Usage'.
+   * Voeg de ```app``` folder toe aan het image met **ADD**
+   * Voegen een **CMD** instructie toe en start daar ```python service.py```
 
-   At this stage you should get an error like:
+   Wanneer je de container bouwt en draait dan zou je de onderstaande melding moeten krijgen:
    
    ```starting container process caused "exec: \"python\": executable file not found in $PATH"```
 
-1. Our app needs Python to be installed. 
+1. Het blijkt dat onze app Python nodig heeft om te draaien: 
 
-   * Use ```apk``` to install the package ```python```
-   (see the Alpine documentation on Docker hub under Usage for an example)
+   * Voeg het package ```python``` to met de package manager ```apk``` die op alpine wordt gebruikt
+   (zie de documentatie van de Alpine image op Docker hub (onder 'Usage') voor een voorbeeld)
    
-   At this stage you should get an error like:
+   Nu zou je bij het draaien de volgende melding moeten zien:
 
    ```ImportError: No module named cherrypy```
 
-1. Our app needs the Python modules ```cherrypy``` and ```simplejson```. Python modules can be
-   installed using pip.
+1. Blijkbaar heeft onze app ook de Python modules ```cherrypy``` en ```simplejson``` nodig. Python modules kunnen worden
+   geinstalleerd met ```pip```.
    
-   * Use ```apk``` to install the package ```py-pip```
-   * Run the command ```pip install cherrypy simplejson``` to install both Python modules
+   * Gebruik ```apk``` om het package ```py-pip``` te installeren op het image
+   * Gebruik ```pip install cherrypy simplejson``` om de beide Python modules te installeren
    
-   Now the service should start correctly. Go to http://<your-ip>:8000 to see if it is
-   accessible. You should get the message:
+   Nu zou de service correct moeten starten. Ga naar http://localhost:8000 om te kijken of de web service werkt.
+   Je zou nu de volgende melding moeten krijgen:
    
    ```jquery library is not loaded```
 
-1. Our page requires jquery-3.2.1.min.js in the ```static``` folder.
+1. Onze webpagina verwacht jquery-3.2.1.min.js in the ```static``` folder.
 
-   * Use **ADD** to add ```https://code.jquery.com/jquery-3.2.1.min.js``` as
+   * Gebruik **ADD** om ```https://code.jquery.com/jquery-3.2.1.min.js``` aan de image toe te voegen als
      ```static/jquery-3.2.1.min.js```
-     
-   This may be a good time to inspect the files in the container. The easiest way is to
-   run the container with for example ```ls -l``` or ```ls -l /static``` as argument. Since we
-   didn't specify an Entrypoint it will use ```/bin/sh``` as entrypoint
    
-   Reload the web page, this time it should work!
+   Dit is een goed moment om de bestanden in de container eens te inspecteren. De eenvoudigste manier is door het
+   runnen van ```ls -l``` of ```ls -l /static```. Maar het kan natuurlijk ook met bijvoorbeeld een interactieve shell.
    
-1. Simulate some development effort by changing the greeting format in ```app/service.conf```
-   to something unique and rebuild and run again. You should now be greeted with your own
-   unique message!
+   Let op: alpine bevat geen ```/bin/bash``` maar wel ```/bin/sh```.
+   
+   Herlaad de web pagina wanneer de container weer draait. Deze keer zou de pagina moeten werken!
+   
+1. Simuleer wat development werk door het greeting format in ```app/service.conf``` te wijzigen naar iets ludieks en
+   herbouw en run nog een keer. Je zou nu moeten worden begroet met je eigen melding.!
 
 ### Bonus
 
-1. Replace the **CMD** by an **ENTRYPOINT**. This allows arguments to be passed to our service
-   (but it doesn't allow easy access to the shell in the container anymore)
+1. Vervang **CMD** door een **ENTRYPOINT**. Dit maakt het bijvoorbeeld mogelijk om command line argumenten achter het run
+   commando direct door te geven aan de service (maar daardoor wordt het iets lastiger om toegang tot de shell te krijgen)
    
-1. Expose port 8000 to make it visible for tools that that port is used, allowing auto-binding for
-   example.
+1. **EXPOSE** poort 8000 zodat het zichtbaar is dat die poort in de image wordt gebruikt.
    
-1. Are the commands in a sensible order? Think about what will most likely change during development and what not and
-   re-arange your dockerfile if you think it improves.
+1. Staan de commando's in de dockerfile in een logische volgorde? Bedenk welke onderdelen het meest waarschijnlijk zullen
+   wijzigen tijdens development en herschik de commando's wanneer je denkt dat dit de snelheid verhoogd.
    
-   Test by making minor changes and rebuilding the app (do this at least twice for the same Dockerfile). How fast does
-   docker rebuild the image?
+   Test door een aantal keren kleine wijzigingen in de sourcecode te maken (whitespace is voldoende) en de image telkens
+   weer te herbouwen. Hoe snel is het bouwen van de image na een code wijziging?
 
 ## 4 - Registries and tags
 
