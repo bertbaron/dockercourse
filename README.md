@@ -150,70 +150,68 @@ Je kunt dit tussen elk van de volgende stappen uitvoeren om te zien hoe je ervoo
 1. Staan de commando's in de dockerfile in een logische volgorde? Bedenk welke onderdelen het meest waarschijnlijk zullen
    wijzigen tijdens development en herschik de commando's wanneer je denkt dat dit de snelheid verhoogd.
    
-   Test door een aantal keren kleine wijzigingen in de sourcecode te maken (whitespace is voldoende) en de image telkens
-   weer te herbouwen. Hoe snel is het bouwen van de image na een code wijziging?
+   Test door een aantal keren kleine wijzigingen in de sourcecode te maken en de image telkens
+   weer te herbouwen. Hoe lang duurt het bouwen van de image na een code wijziging?
 
-## 4 - Registries and tags
+## 4 - Registries en tags
 
-References:
+Referenties:
 
 * https://docs.docker.com/engine/reference/commandline/cli/
 * https://docs.docker.com/registry/#requirements
 * https://docs.docker.com/engine/reference/commandline/tag/#tag-an-image-referenced-by-name
 
-There is already a docker registry installed on the local network of the VM's: ```cursusregistry:5000```
+Er is al een docker registry geinstalleerd op het lokale netwerk: ```cursusregistry:5000```
  
-1. Tag your greeting image with ```cursusregistry:5000/<your-name>/greeting```. List your local
-   images with:
+1. Tag je greeting image met ```cursusregistry:5000/<your-name>/greeting```. Bekijk je lokale
+   images met:
 
     ```docker images```
 
-   You should see that the image ```greeting``` and ```cursusregistry:5000/<your-name>/greeting```
-   point to the same image ID
-   
-   Notice that because you didn't explicitly tag it with a version it was tagged with ```latest```
-   
-1. Push the image to the cursusregistry
+   Je zou moeten zien dat het image ```greeting``` en ```cursusregistry:5000/<your-name>/greeting```
+   naar hetzelfde image ID verwijzen
 
-   The registry doesn't have a user interface, but you should be able to list the tags on your image
-   with the following command:
+   Merk op dat, omdat je niet expliciet een tag hebt opgegeven de tag ```latest``` is gebruikt.   
+   
+1. Push de image naar de cursusregistry
+
+   Onze registry heeft geen user interface, maar je zou de tags van je image moeten kunnen weergeven
+   met het volgende commando:
 
    ```curl -X GET http://cursusregistry:5000/v2/<your-name>/greeting/tags/list```
 
-   This should print something like:
+   Dit zou iets moeten printen als:   
    ```{"name":"<your-name>/greeting","tags":["latest"]}```   
 
-1. Now tag your image again, but this time with the version tag ```1.0```
-   (i.e. ```cursusregistry:5000/<your-name>/greeting:1.0```), and push that to the registry too.
+1. Tag je image met versie tag ```1.0```
+   (i.e. ```cursusregistry:5000/<your-name>/greeting:1.0```), en push die ook.
    
-   Inspect the registry again if you like
+   Inspecteer de registry nog een keer.
     
-1. Pull the image by one of its new tags and run it::
+1. Pull de image met 1 van de tags en run hem:
 
    ```docker pull cursusregistry:5000/<your-name>/greeting```
    
    ```docker run --rm -p8000:8000 cursusregistry:5000/<your-name>/greeting```
    
-   You should see that it pulls the image from the repository before starting it
-   
-   Note: docker run would also pull the image, but only if it doesn't find the tag locally.
-   Therefore we pull first.
+   Opmerking: docker run zal de image ook pullen, maar alleen wanneer die niet lokaal aanwezig is. Daarom pullen
+   we eerst zelf expliciet.
 
 ### Bonus
 
-1. Stop the image and this time run the image from your neighbour
+1. Stop de container en run deze keer de image van je buurman
 
-1. Change the greeting format and build the image again like we did in the previous assignment
-   Give it the tag ```cursusregistry:5000/<your-name>/greeting:1.1``` and push it
+1. Wijzig het greeting format en bouw de image nog een keer.
+   Geef het de tag ```cursusregistry:5000/<your-name>/greeting:1.1``` en push de image
    
-   You now have a 1.0, 1.1 and latest in the repository, but to which image is latest pointing?
+   Je zult nu een 1.0, 1.1 en latest in the repository moeten kunnen zien, maar naar welke image verwijst ```latest```?
    
-1. Fix this and *pull* and *run* the image by its ```latest``` tag
+1. Repareer dit en *pull* and *run* the image met de ```latest``` tag
 
 
 ## 5 - Docker compose
 
-1. Make a docker-compose file to run te service from the previous assignment
+1. Maak een docker-compose bestand om de service uit de vorige opgave te runnen
 
 
 ## 6 - Docker swarm
