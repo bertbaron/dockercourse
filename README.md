@@ -76,7 +76,10 @@ het draaien van een service in een container.
 
 1. Onderzoek de directory op de host. Wie is de eigenaar van de bestanden?
 
+1. Verwijder de directory (met `rm -rf portainerdata`)
    
+   Mocht je een `Permission denied` melding krijgen, dan kan het alsnog met `sudo rm -rf portainerdata`).
+
 ## 3 - Maak je eigen image
 
 Referenties:
