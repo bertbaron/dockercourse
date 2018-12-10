@@ -22,5 +22,6 @@ config = {'/static': {
     'tools.staticdir.dir' : STATIC_DIR
 }}
 cherrypy.tree.mount(AjaxApp(), '/', config=config)
+cherrypy.engine.signals.subscribe()
 cherrypy.engine.start()
 cherrypy.engine.block()
