@@ -19,7 +19,8 @@
                $.post('/submit', {name: $("#name").val()}, function(data) {
 
                   // and set the title with the result
-                  $("#title").html(data['title']) ;
+                  $("#title").html(data['title']);
+                  if (data['hits']) { $("#hits").html('This app served ' + data['hits'] + ' requests'); }
                });
                return false ;
             });
@@ -33,10 +34,11 @@
 <form class="form-style-1" id = "formtest" action = "#" method = "post">
     <p>
         <label for = "name">Name:</label>
-        <input type = "text" id = "name" /> <br />
+        <input type = "text" required="true" id = "name" /> <br />
         <input type = "submit" value = "Submit" />
     </p>
 </form>
+<div id="hits"></div>
 </body>
 
 </html>
