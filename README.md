@@ -215,6 +215,65 @@ Er is al een docker registry geinstalleerd op het lokale netwerk: ```cursusregis
 ## 5 - Docker compose
 
 1. Maak een docker-compose bestand om de service uit de vorige opgave te runnen
+ 
+   Run de image met
 
+   ```docker-compose build && docker-compose up```
+
+   Stop met ctrl+c
+
+1. In ```service.py```, enable de regels
+
+   ```python
+   import redis
+   cache = redis.Redis(host='redis', port=6379)
+   ```
+
+   en in ```Dockerfile```, voeg module ```redis``` to aan de ```pip install``` regel
+
+1. Build en run met ```docker-compose```. Op de website zal nu een request counter moeten
+   verschijnen.
+
+### Bonus
+
+1. Zie:
+
+   ```docker-compose -h```
+   ```docker-compose up -h```
+   
+    * Start de containers in de achtergrond (```docker-compose up -d```)
+    
+    * Herstart de containers met ```down``` en ```up -d```
+    
+    * Herstart de containers met ```restart```
+    
+    Wat is het verschil?
+    
+    Experimenteer eventueel met andere docker-compose commando's. Gebruik
+    
+    ```docker ps``` en ```docker ps -a``` om te zien welke containers er zijn en runnen
+
+1. Wanneer en redis container word gestopt en weer gestart dan bewaart deze blijkbaar de state,
+   maar bij het opnieuw maken van een container is die state natuurlijk weg
+   
+   Maak de directory ```redisdata```. Pas ```docker-compose.yml``` de configuratie voor de redis
+   service aan met voorbeeld hieronder:
+
+   ```yml
+       command: ["--appendonly", "yes"]
+       volumes:
+         - ./redisdata:/data
+   ```
+   
+   Met het command worden de argumenten ```--apendonly yes``` meegegeven aan redis om persistence
+   aan te zetten (zie https://hub.docker.com/_/redis/ onder 'start with persistent storage')
+   
+   Met volumes word de lokale directory als volume gemount 
+   (zie https://docs.docker.com/compose/compose-file/#volumes) 
+   
+    Wanneer de service nu word downgebracht en daarna weer up, dan zou de teller moeten doorlopen
+    
+1. Doe hetzelfde, maar maak nu een named volume (zie https://docs.docker.com/compose/compose-file/#volumes)
 
 ## 6 - Docker swarm
+
