@@ -178,11 +178,12 @@ Er is al een docker registry geinstalleerd op het lokale netwerk: ```cursusregis
    
 1. Push de image naar de cursusregistry
 
-   Onze registry heeft geen user interface, maar je kunt de rest interface aanroepen met curl:
+   Onze registry heeft geen user interface, maar je kunt de rest interface aanroepen met een webbrowser
+   of met curl:
     
    * Een overzicht van de images:
 
-     ```curl -X GET http://cursusregistry:5000/v2/<your-name>/greeting/tags/list```
+     ```curl -X GET http://cursusregistry:5000/v2/_catalog```
 
    * De tags van een specifieke image:
 
