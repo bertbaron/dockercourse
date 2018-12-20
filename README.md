@@ -178,10 +178,15 @@ Er is al een docker registry geinstalleerd op het lokale netwerk: ```cursusregis
    
 1. Push de image naar de cursusregistry
 
-   Onze registry heeft geen user interface, maar je zou de tags van je image moeten kunnen weergeven
-   met het volgende commando:
+   Onze registry heeft geen user interface, maar je kunt de rest interface aanroepen met curl:
+    
+   * Een overzicht van de images:
 
-   ```curl -X GET http://cursusregistry:5000/v2/<your-name>/greeting/tags/list```
+     ```curl -X GET http://cursusregistry:5000/v2/<your-name>/greeting/tags/list```
+
+   * De tags van een specifieke image:
+
+     ```curl -X GET http://cursusregistry:5000/v2/<your-name>/greeting/tags/list```
 
    Dit zou iets moeten printen als:   
    ```{"name":"<your-name>/greeting","tags":["latest"]}```   
@@ -213,6 +218,11 @@ Er is al een docker registry geinstalleerd op het lokale netwerk: ```cursusregis
 
 
 ## 5 - Docker compose
+
+Redis is een snelle key-value store die uitermate geschikt is voor gedeelde cache.
+
+In deze opgave gaan we onze service samen met een redis container opstarten zodat we het aantal request naar onze site
+kunnen bijhouden.
 
 1. Maak een docker-compose bestand om de service uit de vorige opgave te runnen
  
