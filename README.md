@@ -183,9 +183,13 @@ Er is al een docker registry geinstalleerd op het lokale netwerk: ```cursusregis
     
    * Een overzicht van de images:
 
+     http://cursusregistry:5000/v2/_catalog
+
      ```curl -X GET http://cursusregistry:5000/v2/_catalog```
 
    * De tags van een specifieke image:
+
+     http://cursusregistry:5000/v2/<your-name>/greeting/tags/list
 
      ```curl -X GET http://cursusregistry:5000/v2/<your-name>/greeting/tags/list```
 
