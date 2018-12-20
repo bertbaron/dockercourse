@@ -189,7 +189,7 @@ Er is al een docker registry geinstalleerd op het lokale netwerk: ```cursusregis
 
    * De tags van een specifieke image:
 
-     http://cursusregistry:5000/v2/<your-name>/greeting/tags/list
+     `http://cursusregistry:5000/v2/<your-name>/greeting/tags/list`
 
      ```curl -X GET http://cursusregistry:5000/v2/<your-name>/greeting/tags/list```
 
