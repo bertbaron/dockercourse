@@ -221,7 +221,7 @@ Er is al een docker registry geinstalleerd op het lokale netwerk: ```cursusregis
 
 1. Stop de container en run deze keer de image van je buurman
 
-1. Wijzig het greeting format en bouw de image nog een keer.
+1. Wijzig het greeting format van je eigen image en bouw de image nog een keer.
    Geef het de tag ```cursusregistry:5000/<your-name>/greeting:1.1``` en push de image
    
    Je zult nu een 1.0, 1.1 en latest in the repository moeten kunnen zien, maar naar welke image verwijst ```latest```?
