@@ -111,6 +111,9 @@ Je kunt dit tussen elk van de volgende stappen uitvoeren om te zien hoe je ervoo
    Wanneer je de container bouwt en draait dan zou je de onderstaande melding moeten krijgen:
    
    ```starting container process caused "exec: \"python\": executable file not found in $PATH"```
+   
+   Wanneer je de foutmelding ```bin/sh: python not found``` krijgt, dan heb je iets als ```CMD python service.py```
+   gedaan in plaats van iets als ```CMD ["python", "service.py"]```. Die laatste syntax is aanbevolen.
 
 1. Het blijkt dat onze app Python nodig heeft om te draaien: 
 
