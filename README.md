@@ -96,7 +96,11 @@ docker build -t greeting . && docker run --rm -p8000:8000 greeting
 
 Je kunt dit tussen elk van de volgende stappen uitvoeren om te zien hoe je ervoor staat.
   
-1. open de ```greeting``` directory in je home en maak daar het bestand ```Dockerfile```
+1. open de ```greeting``` directory in je $HOME/dockercourse. Hier staat een bestand ```Dockerfile```
+
+   Probeer de container te bouwen (zie tip hierboven). Je zou nu de onderstaande melding moeten krijgen:
+   
+   ```Error response from daemon: the Dockerfile (Dockerfile) cannot be empty```
 
 1. We baseren ons image op het populaire lichtgewicht Alpine image. In deze stap moet je:
    
@@ -110,7 +114,7 @@ Je kunt dit tussen elk van de volgende stappen uitvoeren om te zien hoe je ervoo
 
 1. Het blijkt dat onze app Python nodig heeft om te draaien: 
 
-   * Voeg het package ```python``` to met de package manager ```apk``` die op alpine wordt gebruikt
+   * Voeg het package ```python``` toe met de package manager ```apk``` die op alpine wordt gebruikt
    (zie de documentatie van de Alpine image op Docker hub (onder 'Usage') voor een voorbeeld)
    
    Nu zou je bij het draaien de volgende melding moeten zien:
