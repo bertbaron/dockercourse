@@ -240,7 +240,7 @@ kunnen bijhouden.
  
    Run de image met
 
-   ```docker-compose build && docker-compose up```
+   ```docker-compose up --build```
 
    Stop met ctrl+c
 
