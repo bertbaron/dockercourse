@@ -272,6 +272,9 @@ kunnen bijhouden.
     
     Wat is het verschil?
     
+1.  Start de containers in de achtergrond en volg de logs van de service container in een terminal
+    terwijl je requests doet.
+    
     Experimenteer eventueel met andere docker-compose commando's. Gebruik
     
     ```docker ps``` en ```docker ps -a``` om te zien welke containers er zijn en runnen
