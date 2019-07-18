@@ -228,6 +228,7 @@ Er is al een docker registry geinstalleerd op het lokale netwerk: ```cursusregis
    
 1. Repareer dit en *pull* and *run* the image met de ```latest``` tag
 
+1. Pull de 'ubuntu' image en push deze onder je eigen naam in de cursusregistry
 
 ## 5 - Docker compose
 
